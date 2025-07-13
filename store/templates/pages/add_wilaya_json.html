@@ -1,0 +1,29 @@
+{% extends 'pages/layout.html' %}
+{% load static %}
+
+{% block title %}
+    
+{% endblock %}
+
+{% block head %}
+
+{% endblock %}
+
+{% block admin %}
+
+
+<form method="post">
+    {% csrf_token %}
+    <h2>إضافة ولايات عن طريق JSON</h2>
+    <textarea name="json_data" rows="15" cols="100" placeholder='[{"IDWilaya": 1, "name": "Algiers", "delivery_home": 200, "delivery_office": 150}]'></textarea>
+    <br><br>
+    <button type="submit">إضافة إلى قاعدة البيانات</button>
+</form>
+{% if success %}
+    <p style="color: green;">تمت الإضافة بنجاح ✅</p>
+{% elif error %}
+    <p style="color: red;">{{ error }}</p>
+{% endif %}
+
+
+{% endblock %}

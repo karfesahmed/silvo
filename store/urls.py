@@ -12,6 +12,7 @@ urlpatterns=[
     path('zrorders',views.orders,name="zrorders"),
     path('allproduct',views.all_product,name="allproduct"),
     path('allproduct/<int:product_id>',views.edit_product,name="edit_product"),
+    path('add-wilaya-json/',views.add_wilaya_json, name='add_wilaya_json'),
     # Rest API's
     path('zr/orders',views.zrorders),
     path('products/',views.product_list),

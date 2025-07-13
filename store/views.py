@@ -11,6 +11,23 @@ import requests
 from django.contrib import messages
 
 # Create your views here.
+def add_wilaya_json(request):
+    context = {}
+    if request.method == 'POST':
+        raw_data = request.POST.get('json_data')
+        try:
+            data = json.loads(raw_data)
+            for item in data:
+                WilayaInfo.objects.create(
+                    IDWilaya = item.get('IDWilaya'),
+                    name = item.get('name'),
+                    delivery_home = item.get('delivery_home'),
+                    delivery_office = item.get('delivery_office')
+                )
+            context['success'] = True
+        except Exception as e:
+            context['error'] = f"حدث خطأ: {e}"
+    return render(request, 'add_wilaya_json.html', context)
 
 
 # normal users
