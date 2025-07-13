@@ -1,0 +1,33 @@
+{% extends 'pages/layout.html' %}
+{% load static %}
+
+{% block title %}
+    Silvo Dashboard
+{% endblock %}
+
+{% block admin %}
+<div class="container mt-5">
+    <h2 class="mb-4">قائمة المنتجات</h2>
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+        {% for product in products %}
+        <div class="col">
+            <div class="card h-100 shadow-sm">
+                {% if product.imgs.all %}
+                    <img src="{{ product.imgs.first.image.url }}" class="card-img-top" style="height: 200px; object-fit: cover;" alt="{{ product.name }}">
+                {% else %}
+                    <img src="{% static 'images/placeholder.png' %}" class="card-img-top" style="height: 200px; object-fit: cover;" alt="No image">
+                {% endif %}
+                <div class="card-body">
+                    <h5 class="card-title">{{ product.name }}</h5>
+                    <p class="card-text text-muted">السعر: {{ product.price }} DA</p>
+                    <p class="card-text">{{ product.description|truncatewords:20 }}</p>
+                    <a href="{% url 'edit_product' product.id %}" class="btn btn-primary">تعديل المنتج</a>
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <p>لا توجد منتجات لعرضها حاليًا.</p>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

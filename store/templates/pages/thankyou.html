@@ -1,0 +1,27 @@
+{% extends 'pages/layout.html' %}
+{% load static %}
+
+{% block title %}
+    شكراً لتواصلك معنا – Silvo
+{% endblock %}
+
+{% block body %}
+<div class="container text-center my-5" style="direction: rtl;">
+    <div class="card p-4 mx-auto card-form">
+            <h2 class="mb-3">شكراً لك!</h2>
+                <p class="lead mb-4">لقد استلمنا طلبك بنجاح وسنتصل بك في أقرب وقت ممكن لإتمام الطلبية.</p>
+
+                <div class="card p-4 mx-auto card-form" style="max-width: 500px; background-color: #f8f9fa;">
+                    <h5 class="mb-3">ماذا بعد؟</h5>
+                    <ul class="text-right" style="list-style: none; padding: 0;">
+                        <li>📞 فريقنا سيتواصل معك عبر رقم الهاتف الذي أدخلته.</li>
+                        <li>🚚 سنبدأ تجهيز طلبيتك مباشرة بعد تأكيد البيانات.</li>
+                    </ul>
+                </div>
+
+                <a href="{% url 'store' %}" class="btn btn-primary mt-4">العودة إلى الصفحة الرئيسية</a>
+    </div>
+    
+
+</div>
+{% endblock %}

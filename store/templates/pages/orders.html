@@ -1,0 +1,47 @@
+{% extends 'pages/layout.html' %}
+{% load static %}
+
+{% block title %}
+    Silvo Dashboard
+{% endblock %}
+
+{% block head %}
+    <script src="{% static 'js/zrorders.js' %}"></script>
+{% endblock %}
+
+{% block admin %}
+<div class="container mt-5" >
+    <div class="card card-form p-2">
+        <h1 class="text-center">طلبيات الموقع</h1>
+        <hr>
+        
+        <div class="overflow-auto"  style="white-space: nowrap;" >
+            
+            <!-- ✅ Header -->
+            <div class="d-flex fw-bold bg-light border rounded px-2 py-2 mb-2" style="min-width: 1400px; font-size: 0.85rem;">
+                <div style="width: 60px;" class="text-center">ID</div>
+                <div style="width: 120px;" class="text-center">الاسم</div>
+                <div style="width: 130px;" class="text-center">📞 الهاتف</div>
+                <div style="width: 100px;" class="text-center">الولاية</div>
+                <div style="width: 200px;" class="text-center">📍 العنوان</div>
+                <div style="width: 110px;" class="text-center">نوع التوصيل</div>
+                <div style="width: 200px;" class="text-center">ملاحظة</div>
+                <div style="width: 250px;" class="text-center">الحالة</div>
+                <div style="width: 150px;" class="text-center">المنتج</div>
+                <div style="width: 80px;" class="text-center">السعر</div>
+                
+            </div>
+            
+
+            
+                
+                <div id="orders">
+                    
+                </div>
+            
+            
+        </div> 
+
+    </div>
+</div>
+{% endblock %}

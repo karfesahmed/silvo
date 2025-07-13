@@ -1,0 +1,143 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        {% block title %}
+        {% endblock %}
+
+    </title>
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+    <script>
+      function copyText() {
+        const text = document.getElementById("textToCopy").innerText;
+        navigator.clipboard.writeText(text).then(() => {
+          alert("تم نسخ النص!");
+        }).catch(err => {
+          alert("حدث خطأ أثناء النسخ");
+        });
+      }
+    </script>
+    {% block head %}
+    {% endblock %}
+</head>
+<body>
+<div class="wrapper">
+  
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <div class="container-fluid">
+
+        <a class="navbar-brand ms-auto" href="{% url 'store' %}">
+          <img src="{% static 'images/logo.png' %}" alt="logo" width="60" style="height: 30px; object-fit: cover;">
+        </a>
+
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+          data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+          aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+          {% if not user.is_authenticated  %}
+
+            <li class="nav-item">
+              <a class="nav-link active" href="{% url 'store' %}">الرئيسية</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" href="{% url 'store' %}">منتجاتنا</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" href="{% url 'aboutus' %}">من نحن</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" href="#">اتصل بنا</a>
+            </li>
+          {% else %}
+            <li class="nav-item">
+              <a class="nav-link active" href="{% url 'dashboard' %}">لوحة التحكم</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" href="{% url 'add' %}">اضافة منتج جديد</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active btn btn-outline-secondary" href="{% url 'zrorders' %}">الطلبيات في شركة التوصيل</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" href="{% url 'allproduct' %}">كل المنتجات</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active btn btn-outline-secondary" href="{% url 'logout' %}">تسجيل خروج</a>
+            </li>
+          {% endif %}
+          </ul>
+        </div>
+        {% if not user.is_authenticated  %}
+          <div class="d-flex align-items-center" dir="ltr">
+
+              <span class="text-white" id="textToCopy">0799 99 99 90</span>📱
+              <button class="ml-3 btn btn-outline-secondary" onclick="copyText()" >📋 نسخ</button>
+        </div>
+        {% endif %}
+      </div>
+    </nav>
+      
+    <div class="main">
+      {% if not user.is_authenticated %}
+        {% block body %}
+        {% endblock %}
+      {% else %}
+        {% block admin %}
+        {% endblock %}
+      {% endif %}
+    </div>
+      
+  
+
+
+    <footer class="bg-dark text-light pt-5 pb-3 mt-5">
+    <div class="container">
+        <div class="row">
+
+        <div class="col-12 col-md-4 mb-4">
+            <h5>عن المتجر</h5>
+            <p class="small">
+            متجرنا يوفر لك أفضل المنتجات بأقل الأسعار وتوصيل سريع لجميع الولايات. رضاكم هدفنا.
+            </p>
+        </div>
+
+
+        <div class="col-6 col-md-4 mb-4">
+            <h5>روابط</h5>
+            <ul class="list-unstyled small">
+            <li><a href="#" class="text-light text-decoration-none">الرئيسية</a></li>
+            <li><a href="#" class="text-light text-decoration-none">منتجاتنا</a></li>
+            <li><a href="#" class="text-light text-decoration-none">من نحن</a></li>
+            <li><a href="#" class="text-light text-decoration-none">اتصل بنا</a></li>
+            </ul>
+        </div>
+
+        <div class="col-6 col-md-4 mb-4">
+            <h5>تابعنا</h5>
+            <div class="d-flex gap-3">
+            <a href="#" class="text-light fs-4"><i class="bi bi-facebook"></i></a>
+            <a href="#" class="text-light fs-4"><i class="bi bi-instagram"></i></a>
+            <a href="#" class="text-light fs-4"><i class="bi bi-whatsapp"></i></a>
+            </div>
+        </div>
+
+        </div>
+
+        <hr class="border-light" />
+        <p class="text-center small mb-0">&copy; 2025 جميع الحقوق محفوظة - KRS Store</p>
+    </div>
+  </footer>
+</div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

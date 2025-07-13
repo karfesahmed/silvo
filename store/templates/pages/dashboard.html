@@ -1,0 +1,78 @@
+{% extends 'pages/layout.html' %}
+{% load static %}
+
+{% block title %}
+    Silvo Dashboard
+{% endblock %}
+
+{% block head %}
+    <script src="{% static 'js/dashboard.js' %}"></script>
+{% endblock %}
+
+{% block admin %}
+<div class="container mt-5" >
+    <div class="card card-form p-2">
+        <h1 class="text-center">طلبيات الموقع</h1>
+        <hr>
+        
+        <div class="d-flex gap-2 mb-3">
+            <button class="status-filter btn btn-outline-dark btn-sm filter-tab active" id="all" data-status="all">📋 لم يُراجع</button>
+            <button class="status-filter btn btn-outline-success btn-sm filter-tab" id="confirm" data-status="confirm">✅ تم التأكيد</button>
+            <button class="status-filter btn btn-outline-secondary btn-sm filter-tab" id="delay" data-status="delay">⏳ تم التأجيل</button>
+            <button class="status-filter btn btn-outline-warning btn-sm filter-tab" id="no_answer" data-status="no_answer">📞 لم يرد</button>
+            <button class="status-filter btn btn-outline-danger btn-sm filter-tab" id="cancel" data-status="cancel">❌ أُلغيت</button>
+        </div>
+        <!-- ✅ Scrollable Area -->
+        <div class="overflow-auto"  style="white-space: nowrap;" >
+            
+            <!-- ✅ Header -->
+            <div class="d-flex fw-bold bg-light border rounded px-2 py-2 mb-2" style="min-width: 1400px; font-size: 0.85rem;">
+                <div style="width: 60px;">ID</div>
+                <div style="width: 120px;">الاسم</div>
+                <div style="width: 130px;">📞 الهاتف</div>
+                <div style="width: 100px;">الولاية</div>
+                <div style="width: 200px;">📍 العنوان</div>
+                <div style="width: 110px;">نوع التوصيل</div>
+                <div style="width: 180px;">ملاحظة</div>
+                <div style="width: 110px;">الحالة</div>
+                <div style="width: 150px;">المنتج</div>
+                <div style="width: 80px;">الكمية</div>
+                <div style="width: 100px;">السعر</div>
+                <div style="width: 80px;">✔</div>
+                <div style="width: 150px;">ارسل لشركة التوصيل</div>
+            </div>
+            
+
+            
+                {% csrf_token %}
+                <div id="orders">
+                
+                </div>
+            
+            
+        </div> 
+
+    </div>
+</div>
+
+<script>
+    const tabs = document.querySelectorAll(".filter-tab");
+
+    tabs.forEach(tab => {
+        tab.addEventListener("click", () => {
+            tabs.forEach(t => t.classList.remove("active"));
+            tab.classList.add("active");
+
+            const status = tab.dataset.status;
+        })
+    });
+    
+</script>
+{% if messages %}
+  {% for message in messages %}
+    <script>
+      alert("{{ message|escapejs }}");
+    </script>
+  {% endfor %}
+{% endif %}
+{% endblock %}

@@ -1,0 +1,78 @@
+{% extends 'pages/layout.html' %}
+{% load static %}
+
+{% block title %}
+    اضافة منتج جديد
+{% endblock %}
+
+{% block head %}
+
+{% endblock %}
+
+{% block admin %}
+<div class="container mt-5">
+    <div class="card card-form p-4">
+        <h1 class="text-center">أضف منتجًا!</h1>
+        <hr>
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+
+            <div class="mb-3">
+                <label for="name" class="form-label">اسم المنتج</label>
+                <input type="text" class="form-control" id="name" name="name" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="description" class="form-label">الوصف</label>
+                <textarea class="form-control" id="description" name="description" rows="3" required></textarea>
+            </div>
+
+            <div class="mb-3">
+                <label for="price" class="form-label">السعر</label>
+                <input type="number" class="form-control" id="price" name="price" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="images" class="form-label">صور المنتج</label>
+                <input type="file" class="form-control" id="images" name="images" accept="image/*" multiple required>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">خيارات أخرى (مثل الحجم أو اللون)</label>
+                <div id="other-options">
+                    <div class="d-flex mb-2 option-row">
+                        <input type="text" class="form-control me-2" name="option_title[]" placeholder="مثال: الحجم - M">
+                        <input type="number" class="form-control me-2" name="option_price[]" placeholder="السعر (اختياري)">
+                        <button type="button" class="btn btn-danger" onclick="removeOption(this)">×</button>
+                    </div>
+                </div>
+                <button type="button" class="btn btn-sm btn-secondary mt-2" onclick="addOption()">+ خيار آخر</button>
+            </div>
+
+            <button type="submit" class="btn btn-primary w-100">إضافة المنتج</button>
+        </form>
+    </div>
+</div>
+
+<script>
+    function addOption() {
+        const container = document.getElementById("other-options");
+        const div = document.createElement("div");
+        div.classList.add("d-flex", "mb-2", "option-row");
+        div.innerHTML = `
+            <input type="text" class="form-control me-2" name="option_title[]" placeholder="مثال: الحجم - M">
+            <input type="number" class="form-control me-2" name="option_price[]" placeholder="السعر (اختياري)">
+            <button type="button" class="btn btn-danger" onclick="removeOption(this)">×</button>
+        `;
+        container.appendChild(div);
+    }
+
+    function removeOption(button) {
+        button.parentElement.remove();
+    }
+</script>
+
+
+
+
+{% endblock %}

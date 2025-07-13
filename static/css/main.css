@@ -1,0 +1,78 @@
+.mycard {
+  box-shadow: 0 100px 200px rgba(0,0,0,0.2); 
+  transition: transform 0.3s ease, box-shadow 0.3s ease; 
+    
+}
+.mycard:hover {
+  transform: scale(1.05); 
+  box-shadow: 0 100px 200px rgba(0,0,0,0.3); 
+  cursor: pointer;
+}
+
+html,body{
+  margin: 0;
+  height: 100%;
+}
+
+body{
+
+  padding: 0;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #2c3e50, #4ca1af);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  font-family: 'Arial', sans-serif;
+  color: #fff;
+    
+}
+
+a {
+  text-decoration: none; /* إزالة التسطير */
+  color: inherit;         /* استخدام نفس لون النص المحيط */
+}
+
+a, a:link, a:visited, a:hover, a:active {
+  text-decoration: none !important;
+  color: inherit;
+}
+.main{
+  min-height: 100vh;
+}
+.card-form{
+  background-color: rgba(210, 210, 210, 0.589) !important;
+}
+
+
+.product-img {
+  height: 70vh;
+  object-fit: cover;
+  padding: 10px;
+  width: 100%;
+}
+
+@media (max-width: 768px) {
+  .product-img {
+    height: 50vh;
+    padding: 5px;
+    border-radius: 12px;
+  }
+}
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* ✅ يخفي الأسهم في Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+.card-order{
+  background-color: rgba(250, 255, 179, 0.589) !important;
+}
+.filter-tab.active {
+    background-color: #343a40;
+    color: white;
+    font-weight: bold;
+}
