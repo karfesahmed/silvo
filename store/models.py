@@ -43,7 +43,7 @@ class Order(models.Model):
     def save(self, *args, **kwargs):
         super().save(*args, **kwargs)
         if not self.Tracking:
-            self.Tracking = f"trk-silvo-{self.id}"
+            self.Tracking = f"trk-s-{self.id}"
             super().save(update_fields=['Tracking'])
 
     def __str__(self):
