@@ -27,7 +27,7 @@ def add_wilaya_json(request):
             context['success'] = True
         except Exception as e:
             context['error'] = f"حدث خطأ: {e}"
-    return render(request, 'add_wilaya_json.html', context)
+    return render(request, 'pages/add_wilaya_json.html', context)
 
 
 # normal users
