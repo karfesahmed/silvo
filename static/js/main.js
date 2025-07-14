@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded",()=>{
 
 function products_list(){
     const products = document.querySelector(".products");
-    fetch("http://localhost:8000/products/").then(res=>res.json())
+    fetch("https://silvo.onrender.com/products/").then(res=>res.json())
     .then((data)=>{
         products.innerHTML += "";
         data.forEach((product)=>{

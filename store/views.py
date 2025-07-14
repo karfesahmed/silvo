@@ -9,7 +9,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate,login,logout
 import requests
 from django.contrib import messages
-
+import json
 # Create your views here.
 def add_wilaya_json(request):
     context = {}

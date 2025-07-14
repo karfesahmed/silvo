@@ -5,12 +5,12 @@ document.addEventListener("DOMContentLoaded",()=>{
 
 function get_orders(){
     const orders_page = document.querySelector("#orders")
-    fetch("http://localhost:8000/orders").then(res=>res.json())
+    fetch("https://silvo.onrender.com/orders").then(res=>res.json())
     .then((data)=>{
         orders_page.innerHTML='';
         data.forEach((order)=>{
                 if(order.Confrimee !== "1"){
-                    fetch(`http://localhost:8000/wilayas/${order.IDWilaya}`).then(re=>re.json())
+                    fetch(`https://silvo.onrender.com/wilayas/${order.IDWilaya}`).then(re=>re.json())
                     .then((wilaya)=>{
                         if(order.conferme === "0"){
                             all_orders(order.id,order.Client,order.MobileA,wilaya.name,order.Adresse,order.TProduit,order.quantity,order.Total,order.Note,orders_page);
