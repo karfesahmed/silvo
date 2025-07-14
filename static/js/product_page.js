@@ -89,7 +89,7 @@ function other(){
 
 function get_wilayas(){
     const select_wilaya = document.querySelector("#select_wilaya");
-    fetch("http://localhost:8000/wilayas").then(res=>res.json())
+    fetch("https://silvo.onrender.com/wilayas").then(res=>res.json())
     .then((data)=>{
         data.forEach((wilaya)=>{
             select_wilaya.innerHTML += `

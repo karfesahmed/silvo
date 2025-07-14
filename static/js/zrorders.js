@@ -7,7 +7,7 @@ function get_orders() {
     const orders_page = document.querySelector("#orders");
     orders_page.innerHTML = "<p>جاري تحميل الطلبات...</p>";
     
-    fetch("http://localhost:8000/wilayas")
+    fetch("https://silvo.onrender.com/wilayas")
         .then(res => res.json())
         .then((wilayas) => {
             const wilayaMap = {};
@@ -16,7 +16,7 @@ function get_orders() {
             });
 
             
-            fetch("http://localhost:8000/zr/orders")
+            fetch("https://silvo.onrender.com/zr/orders")
                 .then(res => res.json())
                 .then((data) => {
                     orders_page.innerHTML = '';
